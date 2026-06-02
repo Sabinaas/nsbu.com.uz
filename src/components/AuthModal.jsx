@@ -76,12 +76,12 @@ export default function AuthModal({ lang, onClose, onSuccess }) {
               onChange={e => setOtp(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && verifyOtp()}
               placeholder="123456"
-              maxLength={6}
+              maxLength={8}
               className="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm text-center tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-400 mb-3"
             />
             <button
               onClick={verifyOtp}
-              disabled={loading || otp.length < 6}
+              disabled={loading || otp.length < 8}
               className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white font-semibold py-3 rounded-xl transition-colors mb-2"
             >
               {loading ? '...' : t(lang, 'confirm')}
