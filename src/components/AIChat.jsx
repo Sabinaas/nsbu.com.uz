@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { t } from '../i18n/index.js'
 import { findRelevantStandards } from '../data/standards.js'
 
-export default function AIChat({ lang }) {
+export default function AIChat({ lang, user, canAsk, trackQuestion, onNeedAuth }) {
   const [messages, setMessages] = useState([
     { role: 'assistant', text: t(lang, 'aiGreeting') }
   ])
@@ -19,6 +19,7 @@ export default function AIChat({ lang }) {
   async function send(text) {
     const question = text || input.trim()
     if (!question || loading) return
+    if (!user && !trackQuestion()) return
     setInput('')
     setMessages(prev => [...prev, { role: 'user', text: question }])
     setLoading(true)

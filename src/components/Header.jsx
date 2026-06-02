@@ -1,6 +1,6 @@
 import { t } from '../i18n/index.js'
 
-export default function Header({ lang, setLang, tab, setTab, dbDate }) {
+export default function Header({ lang, setLang, tab, setTab, dbDate, user, onLogin, onProfile }) {
   const navItems = [
     { key: 'standards', icon: '📋', labelKey: 'standards' },
     { key: 'ai', icon: '🤖', labelKey: 'aiConsultant' },
@@ -50,9 +50,24 @@ export default function Header({ lang, setLang, tab, setTab, dbDate }) {
             </div>
 
             {/* Auth button */}
-            <button className="bg-white text-blue-700 hover:bg-blue-50 font-medium text-sm px-3 py-1.5 rounded-lg transition-colors">
-              {t(lang, 'login')}
-            </button>
+            {user ? (
+              <button
+                onClick={onProfile}
+                className="bg-white text-blue-700 hover:bg-blue-50 font-medium text-sm px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5"
+              >
+                <span className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                  {user.email?.[0]?.toUpperCase()}
+                </span>
+                {t(lang, 'profileNav')}
+              </button>
+            ) : (
+              <button
+                onClick={onLogin}
+                className="bg-white text-blue-700 hover:bg-blue-50 font-medium text-sm px-3 py-1.5 rounded-lg transition-colors"
+              >
+                {t(lang, 'login')}
+              </button>
+            )}
           </div>
         </div>
 

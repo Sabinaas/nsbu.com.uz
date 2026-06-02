@@ -67,4 +67,42 @@ export const uz = {
   // Errors
   errorNetwork: 'Tarmoq xatosi. Ulanishni tekshiring.',
   errorGeneral: 'Xato yuz berdi. Qaytadan urinib ko\'ring.',
+
+  // Limit modal
+  limitViewsTitle: 'Ko\'rish limiti tugadi',
+  limitViewsText: '3 ta standartni ko\'rdingiz. Ro\'yxatdan o\'ting — 10 kun bepul to\'liq kirish!',
+  limitQuestionsTitle: 'Savol limiti tugadi',
+  limitQuestionsText: '3 ta savol berdingiz. Ro\'yxatdan o\'ting — 10 kun bepul to\'liq kirish!',
+  registerFree: 'Bepul ro\'yxatdan o\'tish',
+  laterBtn: 'Keyinroq',
+  trialBenefit: '🎉 Ro\'yxatdan o\'tgandan keyin 10 kun bepul kirish',
+
+  // Auth modal
+  authTitle: 'Kirish / Ro\'yxatdan o\'tish',
+  authEmailHint: 'Email kiriting — kirish uchun kod yuboramiz',
+  sendCode: 'Kod olish',
+  otpSentTo: 'Kod yuborildi',
+  otpHint: 'Xat kelmasa "Spam" papkasini tekshiring',
+  confirm: 'Kirish',
+  back: 'Orqaga',
+  trialAfterReg: '🎉 Kirgandan keyin 10 kunlik sinov davri faollashadi',
+
+  // Trial banner
+  trialActive: 'Sinov davri faol',
+  daysLeft: 'kun qoldi',
+  trialText: 'Barcha standartlar va AI-maslahatchiga to\'liq kirish',
+
+  // Profile
+  profile: 'Profil',
+  statusActive: 'Obuna faol',
+  statusTrial: 'Sinov davri',
+  statusFree: 'Bepul kirish',
+  until: 'gacha',
+  subscribeTitle: 'To\'liq kirish',
+  subscribeText: 'Cheksiz ko\'rish va AI-maslahatchiga savollar',
+  sumMonth: 'so\'m/oy',
+  subscribBtn: 'Obuna bo\'lish',
+
+  // Nav
+  profileNav: 'Profil',
 }
