@@ -86,6 +86,8 @@ export const uz = {
   confirm: 'Kirish',
   back: 'Orqaga',
   trialAfterReg: '🎉 Kirgandan keyin 10 kunlik sinov davri faollashadi',
+  checkEmail: 'Pochtangizni tekshiring!',
+  clickLinkHint: 'Xatdagi havolani bosing — avtomatik kirasiz. "Spam" papkasini tekshiring.',
 
   // Trial banner
   trialActive: 'Sinov davri faol',

@@ -3,34 +3,24 @@ import { t } from '../i18n/index.js'
 import { supabase } from '../lib/supabase.js'
 
 export default function AuthModal({ lang, onClose, onSuccess }) {
-  const [step, setStep] = useState('enter') // 'enter' | 'otp'
+  const [step, setStep] = useState('enter') // 'enter' | 'sent'
   const [email, setEmail] = useState('')
-  const [otp, setOtp] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  async function sendOtp() {
+  async function sendLink() {
     if (!email.trim()) return
     setLoading(true)
     setError('')
-    const { error } = await supabase.auth.signInWithOtp({ email: email.trim() })
-    setLoading(false)
-    if (error) { setError(error.message); return }
-    setStep('otp')
-  }
-
-  async function verifyOtp() {
-    if (!otp.trim()) return
-    setLoading(true)
-    setError('')
-    const { data, error } = await supabase.auth.verifyOtp({
+    const { error } = await supabase.auth.signInWithOtp({
       email: email.trim(),
-      token: otp.trim(),
-      type: 'email',
+      options: {
+        emailRedirectTo: window.location.origin,
+      }
     })
     setLoading(false)
     if (error) { setError(error.message); return }
-    onSuccess(data.user)
+    setStep('sent')
   }
 
   return (
@@ -54,12 +44,12 @@ export default function AuthModal({ lang, onClose, onSuccess }) {
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && sendOtp()}
+              onKeyDown={e => e.key === 'Enter' && sendLink()}
               placeholder="email@example.com"
               className="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 mb-3"
             />
             <button
-              onClick={sendOtp}
+              onClick={sendLink}
               disabled={loading || !email.trim()}
               className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white font-semibold py-3 rounded-xl transition-colors"
             >
@@ -67,29 +57,20 @@ export default function AuthModal({ lang, onClose, onSuccess }) {
             </button>
           </>
         ) : (
-          <>
-            <p className="text-sm text-slate-500 mb-1">{t(lang, 'otpSentTo')} <b>{email}</b></p>
-            <p className="text-xs text-slate-400 mb-4">{t(lang, 'otpHint')}</p>
-            <input
-              type="text"
-              value={otp}
-              onChange={e => setOtp(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && verifyOtp()}
-              placeholder="123456"
-              maxLength={8}
-              className="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm text-center tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-400 mb-3"
-            />
+          <div className="text-center py-4">
+            <div className="text-5xl mb-4">📧</div>
+            <h3 className="font-bold text-slate-800 mb-2">{t(lang, 'checkEmail')}</h3>
+            <p className="text-sm text-slate-500 mb-2">
+              {t(lang, 'otpSentTo')} <b>{email}</b>
+            </p>
+            <p className="text-xs text-slate-400 mb-6">{t(lang, 'clickLinkHint')}</p>
             <button
-              onClick={verifyOtp}
-              disabled={loading || otp.length < 8}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white font-semibold py-3 rounded-xl transition-colors mb-2"
+              onClick={() => setStep('enter')}
+              className="text-blue-600 text-sm hover:underline"
             >
-              {loading ? '...' : t(lang, 'confirm')}
-            </button>
-            <button onClick={() => setStep('enter')} className="w-full text-slate-400 text-sm py-1">
               ← {t(lang, 'back')}
             </button>
-          </>
+          </div>
         )}
 
         {error && <p className="text-red-500 text-xs mt-3 text-center">{error}</p>}
