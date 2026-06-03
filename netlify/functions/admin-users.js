@@ -1,8 +1,8 @@
 const { createClient } = require('@supabase/supabase-js')
 
 const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
+  process.env.SB_HOST,
+  process.env.SB_ADMIN_KEY
 )
 
 exports.handler = async function (event) {
