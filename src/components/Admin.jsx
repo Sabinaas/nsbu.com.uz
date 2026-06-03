@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { t } from '../i18n/index.js'
 
-const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL
+const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || 'sabinashvedenko@gmail.com'
 
 export default function Admin({ lang, user }) {
   const [tab, setTab] = useState('dashboard')

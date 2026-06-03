@@ -1,6 +1,6 @@
 import { t } from '../i18n/index.js'
 
-const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL
+const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || 'sabinashvedenko@gmail.com'
 
 export default function Header({ lang, setLang, tab, setTab, dbDate, user, onLogin, onProfile }) {
   const isAdmin = user?.email === ADMIN_EMAIL
