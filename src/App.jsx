@@ -28,13 +28,23 @@ export default function App() {
 
   const { trackView, trackQuestion, canView, canAsk, limitModal, closeLimitModal, MAX_VIEWS, MAX_QUESTIONS } = useGuestLimit()
 
-  // Auth state
+  // Auth state + обработка magic link из URL
   useEffect(() => {
+    // Supabase вставляет токен в hash после редиректа
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) setUser(data.session.user)
+      if (data.session) {
+        setUser(data.session.user)
+        // Очистить hash из URL
+        if (window.location.hash) {
+          window.history.replaceState(null, '', window.location.pathname)
+        }
+      }
     })
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null)
+      if (event === 'SIGNED_IN' && window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname)
+      }
     })
     return () => subscription.unsubscribe()
   }, [])

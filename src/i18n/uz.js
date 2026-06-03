@@ -79,15 +79,15 @@ export const uz = {
 
   // Auth modal
   authTitle: 'Kirish / Ro\'yxatdan o\'tish',
-  authEmailHint: 'Email kiriting — kirish uchun kod yuboramiz',
-  sendCode: 'Kod olish',
-  otpSentTo: 'Kod yuborildi',
+  authEmailHint: 'Email kiriting — kirish uchun havola yuboramiz',
+  sendCode: 'Havola olish',
+  otpSentTo: 'Kirish havolasi yuborildi',
   otpHint: 'Xat kelmasa "Spam" papkasini tekshiring',
   confirm: 'Kirish',
   back: 'Orqaga',
   trialAfterReg: '🎉 Kirgandan keyin 10 kunlik sinov davri faollashadi',
-  checkEmail: 'Pochtangizni tekshiring!',
-  clickLinkHint: 'Xatdagi havolani bosing — avtomatik kirasiz. "Spam" papkasini tekshiring.',
+  checkEmail: 'Havola yuborildi!',
+  clickLinkHint: 'Xatdagi havolani bosing — avtomatik kirasiz. Qurilma eslab qolinadi. "Spam" papkasini tekshiring.',
 
   // Trial banner
   trialActive: 'Sinov davri faol',
