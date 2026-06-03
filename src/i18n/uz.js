@@ -107,4 +107,5 @@ export const uz = {
 
   // Nav
   profileNav: 'Profil',
+  admin: 'Admin',
 }

@@ -5,6 +5,7 @@ import StandardsView from './components/StandardsView.jsx'
 import AIChat from './components/AIChat.jsx'
 import Guide from './components/Guide.jsx'
 import Profile from './components/Profile.jsx'
+import Admin from './components/Admin.jsx'
 import StandardModal from './components/StandardModal.jsx'
 import LimitModal from './components/LimitModal.jsx'
 import AuthModal from './components/AuthModal.jsx'
@@ -113,6 +114,9 @@ export default function App() {
             user={user}
             onLogout={() => { setUser(null); setTab('standards') }}
           />
+        )}
+        {tab === 'admin' && (
+          <Admin lang={lang} user={user} />
         )}
       </main>
 

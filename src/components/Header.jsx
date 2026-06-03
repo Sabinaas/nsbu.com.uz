@@ -1,10 +1,15 @@
 import { t } from '../i18n/index.js'
 
+const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL
+
 export default function Header({ lang, setLang, tab, setTab, dbDate, user, onLogin, onProfile }) {
+  const isAdmin = user?.email === ADMIN_EMAIL
+
   const navItems = [
     { key: 'standards', icon: '📋', labelKey: 'standards' },
     { key: 'ai', icon: '🤖', labelKey: 'aiConsultant' },
     { key: 'guide', icon: '📖', labelKey: 'guide' },
+    ...(isAdmin ? [{ key: 'admin', icon: '🛡️', labelKey: 'admin' }] : []),
   ]
 
   return (

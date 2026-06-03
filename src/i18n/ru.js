@@ -107,4 +107,5 @@ export const ru = {
 
   // Nav
   profileNav: 'Профиль',
+  admin: 'Админ',
 }
