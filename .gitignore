@@ -2,3 +2,6 @@ node_modules/
 dist/
 .env
 .env.local
+
+# Локальные настройки Claude Code (персональные, не для репозитория)
+.claude/settings.local.json
